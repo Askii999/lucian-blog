@@ -40,3 +40,5 @@ export function readingMinutes(content: string) {
     Math.ceil(content.replace(/[#*`>[\]()]/g, '').length / 380),
   );
 }
+
+export type Friend={name:string;avatar:string;link:string;desc:string};

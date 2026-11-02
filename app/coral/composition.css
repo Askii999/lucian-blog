@@ -198,11 +198,15 @@ html{font-size:14px}
 .coral-site .neighbour-avatar.has-image{border:0;overflow:hidden}
 .coral-site .neighbour-avatar img{display:block;width:100%;height:100%;object-fit:contain}
 .coral-site .neighbour-card h2{font-size:var(--text-xl);font-weight:500;color:var(--color-muted)}
-.coral-site a.neighbour-card{text-decoration:none;transition:transform var(--dur-short) var(--ease-out),box-shadow var(--dur-short) var(--ease-out)}
-.coral-site a.neighbour-card h2{color:var(--color-ink)}
-.coral-site a.neighbour-card:hover{border-color:var(--color-rule-2)}
-@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){:root:not([data-motion=off]) .coral-site a.neighbour-card:hover{transform:translateY(-6px);box-shadow:var(--stock-lift)}}
-@media(prefers-reduced-motion:reduce){.coral-site a.neighbour-card{transition:none}}
+.coral-site .neighbour-linked{text-decoration:none;transition:transform var(--dur-short) var(--ease-out),box-shadow var(--dur-short) var(--ease-out)}
+.coral-site .neighbour-linked h2{color:var(--color-ink)}
+.coral-site .neighbour-linked:hover{border-color:var(--color-rule-2)}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){:root:not([data-motion=off]) .coral-site .neighbour-linked:hover{transform:translateY(-6px);box-shadow:var(--stock-lift)}}
+@media(prefers-reduced-motion:reduce){.coral-site .neighbour-linked{transition:none}}
+.coral-site .neighbour-linked{position:relative}
+.coral-site .neighbour-main{display:flex;align-items:center;gap:var(--space-md);min-width:0;width:100%;text-decoration:none}
+.coral-site .neighbour-main::after{content:"";position:absolute;inset:0}
+.coral-site .neighbour-copy{min-width:0;overflow-wrap:anywhere}
 .coral-site .neighbour-card p{margin-top:var(--space-xs);font-size:var(--text-md);line-height:1.6;color:var(--color-muted)}
 @media(max-width:60rem){.coral-site .neighbour-grid{grid-template-columns:repeat(2,minmax(0,340px))}}
 @media(max-width:40rem){.coral-site .experiment-sculptures{grid-template-columns:minmax(0,1fr)}.coral-site .neighbour-grid{grid-template-columns:minmax(0,340px);justify-content:center}}

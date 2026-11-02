@@ -14,12 +14,14 @@ test('rejects traversal slugs, duplicate YAML keys, executable tags and invalid 
 });
 function fixture(run){const base=resolve(tmpdir()),dir=mkdtempSync(join(base,'lucian-content-'));try{return run(dir);}finally{assert.equal(dirname(dir),base);assert.ok(basename(dir).startsWith('lucian-content-'));rmSync(dir,{recursive:true,force:true});}}
 test('drafts stay out of public lists but remain available for validation',()=>fixture(root=>{mkdirSync(join(root,'posts'));writeFileSync(join(root,'posts/public.md'),source());writeFileSync(join(root,'posts/draft.md'),source().replace('published: true','published: false'));assert.equal(loadPosts(root).length,1);assert.equal(loadPosts(root,true).length,2);}));
-test('friend URL and avatar validation rejects active content and duplicate sites',()=>fixture(root=>{
- const content=join(root,'content'),pub=join(root,'public');mkdirSync(join(content,'friends'),{recursive:true});mkdirSync(join(pub,'images/friends'),{recursive:true});writeFileSync(join(pub,'images/friends/example.png'),Buffer.from([137,80,78,71,13,10,26,10]));
- const entry={name:'Example',url:'https://example.com/',avatar:'/images/friends/example.png',description:'A site',order:1};const path=join(content,'friends/example.json');writeFileSync(path,JSON.stringify(entry));assert.equal(loadFriends(content,pub).length,1);
- writeFileSync(path,JSON.stringify({...entry,url:'javascript:alert(1)'}));assert.throws(()=>loadFriends(content,pub));
- writeFileSync(path,JSON.stringify({...entry,avatar:'/images/friends/example.svg'}));assert.throws(()=>loadFriends(content,pub));
- writeFileSync(path,JSON.stringify(entry));writeFileSync(join(content,'friends/duplicate.json'),JSON.stringify(entry));assert.throws(()=>loadFriends(content,pub));
+test('four-field friends support remote avatars and reject invalid or duplicate entries',()=>fixture(root=>{
+ const content=join(root,'content'),pub=join(root,'public');mkdirSync(content);mkdirSync(join(pub,'images/friends'),{recursive:true});writeFileSync(join(pub,'images/friends/example.png'),Buffer.from([137,80,78,71,13,10,26,10]));
+ const entry={name:'Example',avatar:'https://example.com/avatar.png',link:'https://example.com/',desc:'A site'};const path=join(content,'friends.json');
+ const save=value=>writeFileSync(path,JSON.stringify(value));save([entry]);const loaded=loadFriends(content,pub);assert.deepEqual(loaded[0],entry);
+ save([{...entry,avatar:'/images/friends/example.png'}]);assert.equal(loadFriends(content,pub).length,1);
+ save([{...entry,link:'javascript:alert(1)'}]);assert.throws(()=>loadFriends(content,pub));
+ save([{...entry,avatar:'javascript:alert(1)'}]);assert.throws(()=>loadFriends(content,pub));
+ save([entry,entry]);assert.throws(()=>loadFriends(content,pub));
+ save([{...entry,links:[{icon:'web',link:'https://example.com/'}]}]);assert.throws(()=>loadFriends(content,pub));
 }));
-
 test('unpublished English translations do not leak through a public post',()=>fixture(root=>{mkdirSync(join(root,'posts'));mkdirSync(join(root,'translations/en'),{recursive:true});writeFileSync(join(root,'posts/public.md'),source());writeFileSync(join(root,'translations/en/public.md'),source().replace('published: true','published: false'));assert.equal(loadPosts(root)[0].english,undefined);}));

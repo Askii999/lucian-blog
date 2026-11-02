@@ -2,7 +2,7 @@
 {
   "title": "银",
   "date": "2026-09-07",
-  "category": "tech",
+  "category": "life",
   "tags": [
     "night"
   ],

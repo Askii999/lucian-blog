@@ -22,11 +22,5 @@
     "url": "https://www.freeme.fun/images/lucian-profile-cutout.png",
     "sha256": "2859cff99dfe79055ba80e4272e7a3124bbc5736f76cab241a0331c487c3044b",
     "license": "Site-display asset; no redistribution license granted by the code repository"
-  },
-  {
-    "file": "public/images/friends/dustella.png",
-    "url": "https://img-cdn.dustella.net/markdown/avtr-layer.png",
-    "sha256": "04eac77076210a12580ae5291ae243c15311e7396b3a40ab605f37da355d37d9",
-    "license": "Site-display asset; no redistribution license granted by the code repository"
   }
 ]

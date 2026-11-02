@@ -15,7 +15,7 @@ try{
  const posts=await fetch(root+'/api/posts').then(r=>r.json()),expected=loadPosts(resolve(cwd,'content')),friends=loadFriends(resolve(cwd,'content'),resolve(cwd,'public'));assert.deepEqual(posts,expected);
  for(const p of posts){const html=await read('/posts/'+p.slug);assert.ok(html.includes('data-comments-provider="giscus"'));assert.ok(html.includes('note-content'));}
  for(const [category,label]of [['tech','技术'],['life','生活']])assert.ok((await read('/blog?category='+category)).includes('aria-pressed="true">'+label));
- const links=await read('/links');for(const friend of friends){assert.ok(links.includes(friend.avatar));assert.equal((await fetch(root+friend.avatar)).status,200);}assert.equal((links.match(/class="neighbour-card stock"/g)||[]).length,Math.max(3,friends.length));
+ const links=await read('/links');for(const friend of friends){assert.ok(links.includes(friend.avatar));if(friend.avatar.startsWith('/'))assert.equal((await fetch(root+friend.avatar)).status,200);}assert.equal((links.match(/class="neighbour-card stock(?: neighbour-linked)?"/g)||[]).length,Math.max(3,friends.length));
  const about=await read('/about');assert.ok(about.includes('class="about-prose"'));
  for(const [language,tag]of [['en','lang="en-US"'],['zh-Hant','lang="zh-Hant"']])assert.ok((await read('/about',{cookie:'still-language='+language})).includes(tag));
  const explore=await read('/explore');for(const kind of['reading','markdown','palette'])assert.ok(explore.includes('wire-'+kind));
