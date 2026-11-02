@@ -46,5 +46,5 @@ jobs:
           [[ "$port" =~ ^[0-9]+$ ]]
           [[ "$GITHUB_SHA" =~ ^[0-9a-f]{40}$ ]]
           digest=$(sha256sum release/site.tgz | cut -d' ' -f1)
-          scp -i "$HOME/.ssh/blog_deploy" -P "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes release/site.tgz "$DEPLOY_USER@$DEPLOY_HOST:/opt/lucian-blog/incoming/$GITHUB_SHA.tgz"
+          scp -i "$HOME/.ssh/blog_deploy" -P "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes release/site.tgz "$DEPLOY_USER@$DEPLOY_HOST:/opt/still-blog/incoming/$GITHUB_SHA.tgz"
           ssh -i "$HOME/.ssh/blog_deploy" -p "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes "$DEPLOY_USER@$DEPLOY_HOST" "bash -s -- '$GITHUB_SHA' '$digest'" < deploy/remote-release.sh
