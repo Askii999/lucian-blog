@@ -1,5 +1,5 @@
 ---
-title: 新的手记
+title: 文章模板
 date: 2026-11-02
 category: tech
 tags: [记录]

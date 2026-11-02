@@ -13,7 +13,7 @@ Content files → validation and loading → page routes → React + Coral.
 
 - `app/`: home, journal, archives, tags, explore, friends, and about pages.
 - `components/`: UI and interactions; `app/coral/`: styles and design tokens.
-- `content/posts/`: articles; `content/about.*.md`: about pages; `content/profile.json`: author information.
+- `content/posts/`: articles, including the unpublished [template](content/posts/template.md); `content/about.*.md`: about pages; `content/profile.json`: author information.
 - `content/friends.json`: friend links; `public/`: static assets.
 - `lib/`: content loading, localization, and shared logic.
 
