@@ -1,0 +1,2 @@
+// Parser-blocking in <head>: run before body paint, without waiting for hydration.
+export const themeBootstrap = `(function(){var root=document.documentElement;var theme=root.dataset.theme||'dark';try{var saved=localStorage.getItem('still-theme');if(saved==='light'||saved==='dark')theme=saved;}catch(e){}root.dataset.theme=theme;try{document.cookie='still-theme='+theme+'; Path=/; Max-Age=31536000; SameSite=Lax';}catch(e){}})();`;

@@ -1,0 +1,54 @@
+# Installed/generated files
+node_modules/
+dist/
+.next/
+.vinext/
+coverage/
+release/
+*.tsbuildinfo
+next-env.d.ts
+# Private configuration and runtime data
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.db
+auth.json
+admin-password.txt
+ADMIN-ACCESS.txt
+data/
+.local/
+backups/
+# Local work/history
+deploy-artifacts/
+.hallmark/
+.openai/
+.npm-cache/
+*.log
+.DS_Store
+Thumbs.db
+
+# Third-party site assets: obtain independently with npm run setup:assets
+/public/fonts/coral/general-sans-*.woff2
+/public/images/lucian-profile-cutout.png
+/public/images/friends/dustella.png
+
+# Additional private key stores / local archives
+id_rsa
+id_ed25519
+*.p8
+*.jks
+*.keystore
+credentials.json
+.ssh/
+.aws/
+*.zip
+*.tgz
+*.tar
+*.tar.gz

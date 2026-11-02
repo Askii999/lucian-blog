@@ -1,0 +1,32 @@
+[
+  {
+    "file": "public/fonts/coral/general-sans-400.woff2",
+    "url": "https://cdn.fontshare.com/wf/MFQT7HFGCR2L5ULQTW6YXYZXXHMPKLJ3/YWQ244D6TACUX5JBKATPOW5I5MGJ3G73/7YY3ZAAE3TRV2LANYOLXNHTPHLXVWTKH.woff2",
+    "sha256": "3ec2be771caf168b077ca05af4df1dace77088e2b3a27da570036e61be58a039",
+    "license": "ITF Free Font License; download directly from Fontshare for this site, excluded from Git"
+  },
+  {
+    "file": "public/fonts/coral/general-sans-500.woff2",
+    "url": "https://cdn.fontshare.com/wf/3RZHWSNONLLWJK3RLPEKUZOMM56GO4LJ/BPDRY7AHVI3MCDXXVXTQQ76H3UXA63S3/SB2OEB6IKZPRR6JT4GFJ2TFT6HBB6AZN.woff2",
+    "sha256": "c30377df1de8444d07161725c751f458beec07c28034df2fd275d1aa587a239f",
+    "license": "ITF Free Font License; download directly from Fontshare for this site, excluded from Git"
+  },
+  {
+    "file": "public/fonts/coral/general-sans-600.woff2",
+    "url": "https://cdn.fontshare.com/wf/K46YRH762FH3QJ25IQM3VAXAKCHEXXW4/ISLWQPUZHZF33LRIOTBMFOJL57GBGQ4B/3ZLMEXZEQPLTEPMHTQDAUXP5ZZXCZAEN.woff2",
+    "sha256": "94a2a0e1ef59728eb65498ed7fe26e5af7e2858a3a4a278a89ac1f83a0544945",
+    "license": "ITF Free Font License; download directly from Fontshare for this site, excluded from Git"
+  },
+  {
+    "file": "public/images/lucian-profile-cutout.png",
+    "url": "https://www.freeme.fun/images/lucian-profile-cutout.png",
+    "sha256": "2859cff99dfe79055ba80e4272e7a3124bbc5736f76cab241a0331c487c3044b",
+    "license": "Site-display asset; no redistribution license granted by the code repository"
+  },
+  {
+    "file": "public/images/friends/dustella.png",
+    "url": "https://img-cdn.dustella.net/markdown/avtr-layer.png",
+    "sha256": "04eac77076210a12580ae5291ae243c15311e7396b3a40ab605f37da355d37d9",
+    "license": "Site-display asset; no redistribution license granted by the code repository"
+  }
+]

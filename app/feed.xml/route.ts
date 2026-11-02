@@ -1,0 +1,4 @@
+import {getPosts,getSettings} from '@/lib/content';
+export const dynamic='force-dynamic';
+const escape=(s:string)=>s.replace(/[<>&"']/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;'}[c]!));
+export function GET(){const url='https://www.freeme.fun',s=getSettings();return new Response(`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>${escape(s.author)} · 手记</title><link>${escape(url)}</link><description>${escape(s.intro)}</description><language>zh-CN</language>${getPosts().map(p=>`<item><title>${escape(p.title)}</title><link>${escape(url+'/posts/'+p.slug)}</link><guid isPermaLink="true">${escape(url+'/posts/'+p.slug)}</guid><description>${escape(p.excerpt)}</description><category>${escape(p.tags[0]||'')}</category><pubDate>${new Date(p.date+'T00:00:00+08:00').toUTCString()}</pubDate></item>`).join('')}</channel></rss>`,{headers:{'Content-Type':'application/rss+xml; charset=utf-8','Cache-Control':'no-cache'}})}
