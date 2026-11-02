@@ -5,7 +5,7 @@
 ## Stack
 
 React 19, TypeScript, Vinext / Vite, Node.js 24, and Tailwind CSS.
-Markdown and YAML for content, Giscus / GitHub Discussions for comments, and OpenCC for Simplified–Traditional Chinese conversion.
+Markdown and YAML for content, Giscus Discussions for comments, and OpenCC for language conversion.
 
 ## Architecture
 
@@ -17,7 +17,6 @@ Content files → validation and loading → page routes → React + Coral.
 - `content/friends.json`: friend links; `public/`: static assets.
 - `lib/`: content loading, localization, and shared logic.
 
-Content is managed in Git without a database. Features include a photo collection, three interactive block experiments, light/dark themes, and English, Simplified Chinese, and Traditional Chinese support.
 
 ## Friend Links
 
