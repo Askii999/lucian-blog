@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api/admin
-Sitemap: https://www.freeme.fun/sitemap.xml
+Sitemap: https://lucian.me.uk/sitemap.xml
