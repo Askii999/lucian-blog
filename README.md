@@ -1,15 +1,15 @@
 # Lucian's Blog
 
-[freeme.fun](https://www.freeme.fun/) · Notes on technology and life.
+[lucian.me.uk](https://lucian.me.uk/) · Notes on technology and life.
 
 ## Stack
 
-React 19, TypeScript, Vinext / Vite, Node.js 24, and Tailwind CSS.
+React 19, TypeScript, Vinext / Vite, Cloudflare Workers, and Tailwind CSS (Node.js 24 for builds).
 Markdown and YAML for content, Giscus Discussions for comments, and OpenCC for language conversion.
 
 ## Architecture
 
-Content files → validation and loading → page routes → React + Coral.
+Markdown / JSON → build-time validation and content snapshot → Workers page routes → React + Coral.
 
 - `app/`: home, journal, archives, tags, explore, friends, and about pages.
 - `components/`: UI and interactions; `app/coral/`: styles and design tokens.

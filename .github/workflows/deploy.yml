@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   release:
-    if: vars.DEPLOY_ENABLED == 'true' && github.ref == 'refs/heads/main'
+    if: vars.CF_DEPLOY_ENABLED == 'true' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment: production
     steps:
@@ -24,27 +24,9 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run setup:assets
       - run: npm run check:secrets && npm run validate && npm run typecheck && npm run lint && npm test
-      - run: npm run build && node scripts/smoke.mjs && npm run pack:release
-      - name: Upload and activate immutable release
+      - run: npm run build && node scripts/smoke.mjs
+      - name: Publish Cloudflare Worker
+        run: npm run deploy
         env:
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
-          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -n "$DEPLOY_HOST" && test -n "$DEPLOY_USER"
-          test -n "$DEPLOY_SSH_KEY" && test -n "$DEPLOY_KNOWN_HOSTS"
-          install -d -m 700 "$HOME/.ssh"
-          printf '%s\n' "$DEPLOY_SSH_KEY" > "$HOME/.ssh/blog_deploy"
-          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
-          chmod 600 "$HOME/.ssh/blog_deploy" "$HOME/.ssh/known_hosts"
-          trap 'rm -f "$HOME/.ssh/blog_deploy"' EXIT
-          port="${DEPLOY_PORT:-22}"
-          [[ "$port" =~ ^[0-9]+$ ]]
-          [[ "$GITHUB_SHA" =~ ^[0-9a-f]{40}$ ]]
-          digest=$(sha256sum release/site.tgz | cut -d' ' -f1)
-          scp -i "$HOME/.ssh/blog_deploy" -P "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes release/site.tgz "$DEPLOY_USER@$DEPLOY_HOST:/opt/still-blog/incoming/$GITHUB_SHA.tgz"
-          ssh -i "$HOME/.ssh/blog_deploy" -p "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes "$DEPLOY_USER@$DEPLOY_HOST" "bash -s -- '$GITHUB_SHA' '$digest'" < deploy/remote-release.sh
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

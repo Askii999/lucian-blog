@@ -52,3 +52,7 @@ credentials.json
 *.tgz
 *.tar
 *.tar.gz
+.cloudflare/
+
+# Build-time content snapshot
+/lib/generated/

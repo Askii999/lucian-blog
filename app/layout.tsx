@@ -12,7 +12,7 @@ import { getLanguage } from '@/lib/locale';
 export async function generateMetadata(): Promise<Metadata> {
   const language = await getLanguage();
   return {
-    metadataBase: new URL('https://www.freeme.fun'),
+    metadataBase: new URL('https://lucian.me.uk'),
     title: { default: language === 'en' ? "Lucian’s Blog" : 'Lucian的博客', template: '%s · Lucian' },
     description: language === 'en' ? 'Articles, photographs and experiments.' : '文章、照片与小实验。',
     icons: { icon: '/favicon.svg?v=split-ring' },

@@ -1,6 +1,6 @@
 import {readdirSync,lstatSync,readFileSync} from 'node:fs';
 import {join,relative,resolve} from 'node:path';
-const root=resolve(process.argv[2]||'.'),skip=new Set(['.git','node_modules','dist','.next','.vinext','.local','release','coverage']);
+const root=resolve(process.argv[2]||'.'),skip=new Set(['.git','node_modules','dist','.next','.vinext','.cloudflare','.local','release','coverage']);
 const findings=[];
 const patterns=[/-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----/,/\bgh[pousr]_[A-Za-z0-9]{30,}\b/,/\bgithub_pat_[A-Za-z0-9_]{30,}\b/,/\bAKIA[0-9A-Z]{16}\b/,/\bsk-[A-Za-z0-9_-]{32,}\b/];
 function walk(dir){for(const e of readdirSync(dir,{withFileTypes:true})){if(skip.has(e.name))continue;const file=join(dir,e.name),rel=relative(root,file).replaceAll('\\','/');if(e.isSymbolicLink()){findings.push({file:rel,reason:'symlink outside release output'});continue;}if(e.isDirectory()){walk(file);continue;}
