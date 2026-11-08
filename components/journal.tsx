@@ -7,7 +7,7 @@ import {useLanguage} from './language';
 
 export function ArticleRow({post:source}:{post:Post;index?:number}){
  const {localize}=useLanguage(),post=localize(source);
- return <a className="note-entry" href={'/posts/'+post.slug} data-edit-post={post.slug}>
+ return <a className="note-entry" href={'/posts/'+post.slug}>
   <div className="entry-copy"><h2>{post.title}</h2>{post.tags.length>0&&<div className="note-tags">{post.tags.map(tag=><span key={tag}>{tag.replace(/^#+\s*/, '')}</span>)}</div>}</div>
   <time className="entry-date num" dateTime={post.date}>{post.date.replaceAll('-','.')}</time>
  </a>;

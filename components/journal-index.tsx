@@ -13,7 +13,7 @@ export function ArchiveTimeline({posts}:{posts:Post[]}){
    <h2 id={'year-'+year} className="num">{year}</h2>
    <div className="archive-months">{months.map(({month,posts:entries})=><section className="archive-month" key={month} aria-label={year+'-'+month}>
     <h3>{en?new Intl.DateTimeFormat('en-US',{month:'long',timeZone:'UTC'}).format(new Date(Date.UTC(2000,Number(month)-1,1))):Number(month)+'月'}</h3>
-    <ol>{entries.map(post=><li key={post.slug}><a href={'/posts/'+post.slug} data-edit-post={post.slug}><time className="num" dateTime={post.date}>{post.date.slice(5).replace('-','.')}</time><span>{localize(post).title}</span></a></li>)}</ol>
+    <ol>{entries.map(post=><li key={post.slug}><a href={'/posts/'+post.slug}><time className="num" dateTime={post.date}>{post.date.slice(5).replace('-','.')}</time><span>{localize(post).title}</span></a></li>)}</ol>
    </section>)}</div>
   </section>)}</div>
   {!posts.length&&<p className="notes-empty">{en?'No public notes yet.':'还没有公开的手记。'}</p>}

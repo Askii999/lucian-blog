@@ -1,0 +1,6 @@
+.almanac-site .almanac-explore{padding-block:var(--space-2xl) var(--section-gap-s)}
+.almanac-site .explore-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--gap-columns);align-items:end;margin-bottom:var(--space-2xl)}
+.almanac-site .explore-heading h1{margin:0;font-size:var(--text-display-s);text-wrap:balance}
+.almanac-site .explore-heading p{margin:0;font-size:var(--text-lead);color:var(--color-muted)}
+.almanac-site .almanac-explore :where(a,button,input,textarea,select,summary):focus-visible{outline:2px solid var(--color-focus);outline-offset:var(--space-2xs)}
+@media(max-width:40rem){.almanac-site .almanac-explore{padding-block:var(--space-xl) var(--section-gap-s)}.almanac-site .explore-heading{grid-template-columns:minmax(0,1fr);gap:var(--space-lg)}}

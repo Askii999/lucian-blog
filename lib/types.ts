@@ -26,14 +26,6 @@ export type Settings = {
   introEn?: string;
   aboutEn?: string;
 };
-export type Comment = {
-  id: number;
-  slug: string;
-  name: string;
-  content: string;
-  created_at: string;
-  approved: number;
-};
 export function readingMinutes(content: string) {
   return Math.max(
     1,
