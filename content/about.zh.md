@@ -17,3 +17,4 @@
 ## 附注
 
 站内文字与切片除特别注明外，均采用 CC BY-NC-SA 4.0 协议。若你在某段记录里听见了熟悉的回响，那大概是因为我们恰好在同一个频段停留过。
+This message is used to verify that this feed (feedId:1369752895796167558) belongs to me (userId:1359627956127800983). Join me in enjoying the next generation information browser https://folo.is.
