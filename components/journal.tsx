@@ -6,7 +6,7 @@ import {postSection} from '@/lib/post-section';
 import {useLanguage} from './language';
 
 export function ArticleRow({post:source}:{post:Post;index?:number}){
- const {localize}=useLanguage(),post=localize(source);
+ const post=source;
  return <a className="note-entry" href={'/posts/'+post.slug}>
   <div className="entry-copy"><h2>{post.title}</h2>{post.tags.length>0&&<div className="note-tags">{post.tags.map(tag=><span key={tag}>{tag.replace(/^#+\s*/, '')}</span>)}</div>}</div>
   <time className="entry-date num" dateTime={post.date}>{post.date.replaceAll('-','.')}</time>
@@ -14,7 +14,7 @@ export function ArticleRow({post:source}:{post:Post;index?:number}){
 }
 
 export function Journal({posts,initialSection='all'}:{posts:Post[];initialSection?:string}){
- const {language,localize}=useLanguage(),en=language==='en';
+ const {language}=useLanguage(),en=language==='en';
  const [query,setQuery]=useState(''),[section,setSection]=useState(initialSection),[limit,setLimit]=useState(5);
  useEffect(()=>{
   const sync=()=>{const value=new URLSearchParams(location.search).get('category');setSection(value==='tech'||value==='life'?value:'all');setLimit(5);};
@@ -22,7 +22,7 @@ export function Journal({posts,initialSection='all'}:{posts:Post[];initialSectio
   return()=>window.removeEventListener('popstate',sync);
  },[]);
  function chooseSection(value:string){setSection(value);setLimit(5);const url=new URL(location.href);if(value==='all')url.searchParams.delete('category');else url.searchParams.set('category',value);history.pushState(null,'',url.pathname+url.search+url.hash);}
- const filtered=[...posts].sort((a,b)=>b.date.localeCompare(a.date)).filter(post=>(section==='all'||postSection(post)===section)&&[post.title,post.content,post.english?.title,post.english?.content,...post.tags,localize(post).title].join(' ').toLowerCase().includes(query.trim().toLowerCase()));
+ const filtered=[...posts].sort((a,b)=>b.date.localeCompare(a.date)).filter(post=>(section==='all'||postSection(post)===section)&&[post.title,post.content,...post.tags].join(' ').toLowerCase().includes(query.trim().toLowerCase()));
  return <section className="notes-page journal-page" aria-labelledby="journal-title">
   <h1 id="journal-title" className="sr-only">{en?'Journal':'手记'}</h1>
   <div className="journal-controls">

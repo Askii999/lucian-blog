@@ -41,12 +41,12 @@ export function headingId(text: string) {
       .replace(/[^\p{L}\p{N}]+/gu, '-')
   );
 }
-export function Markdown({ content }: { content: string }) {
+export function Markdown({ content, preserveSource=false }: { content: string; preserveSource?:boolean }) {
   const { language } = useLanguage();
   return (
     <div className="prose">
       <ReactMarkdown
-        remarkPlugins={language === 'zh-Hant' ? [remarkGfm, traditionalMarkdown] : [remarkGfm]}
+        remarkPlugins={!preserveSource && language === 'zh-Hant' ? [remarkGfm, traditionalMarkdown] : [remarkGfm]}
         components={{
           h2: ({ children }) => (
             <h2 id={headingId(String(children))}>{children}</h2>

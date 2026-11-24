@@ -25,3 +25,5 @@ Append an entry to [`content/friends.json`](content/friends.json) and open a pul
 ## License
 
 Code: MIT. Original writing: CC BY-NC-SA 4.0. See [LICENSE](LICENSE).
+
+Articles have one source in `content/posts/`, written in Chinese, English, or both. Interface language changes navigation and controls; article text stays as written.

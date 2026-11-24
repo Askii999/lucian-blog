@@ -1,4 +1,3 @@
-import type { Post } from './types';
 import { toTraditional } from './traditional';
 export type Language = 'zh' | 'zh-Hant' | 'en';
 export const english: Record<string, string> = {
@@ -24,17 +23,4 @@ export const english: Record<string, string> = {
 };
 export function translate(text: string, language: Language) {
   return language === 'en' ? (english[text] ?? text) : language === 'zh-Hant' ? toTraditional(text) : text;
-}
-export function localPost(p: Post, language: Language): Post {
-  if (language === 'zh-Hant') return { ...p, title: toTraditional(p.title), excerpt: toTraditional(p.excerpt), category: toTraditional(p.category), tags: p.tags.map(toTraditional) };
-  if (language !== 'en') return p;
-  const en = p.english;
-  return {
-    ...p,
-    ...(en?.title && en?.content
-      ? { title: en.title, excerpt: en.excerpt, content: en.content }
-      : {}),
-    category: translate(p.category, language),
-    tags: p.tags.map((t) => translate(t, language)),
-  };
 }

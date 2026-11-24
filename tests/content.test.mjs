@@ -24,7 +24,7 @@ test('four-field friends support remote avatars and reject invalid or duplicate 
  save([entry,entry]);assert.throws(()=>loadFriends(content,pub));
  save([{...entry,links:[{icon:'web',link:'https://example.com/'}]}]);assert.throws(()=>loadFriends(content,pub));
 }));
-test('unpublished English translations do not leak through a public post',()=>fixture(root=>{mkdirSync(join(root,'posts'));mkdirSync(join(root,'translations/en'),{recursive:true});writeFileSync(join(root,'posts/public.md'),source());writeFileSync(join(root,'translations/en/public.md'),source().replace('published: true','published: false'));assert.equal(loadPosts(root)[0].english,undefined);}));
+test('Chinese and English articles each load from a single source file',()=>fixture(root=>{mkdirSync(join(root,'posts'));writeFileSync(join(root,'posts/chinese.md'),source('', '中文正文'));writeFileSync(join(root,'posts/english.md'),source().replace('title: 示例','title: English note').replace('正文','English body'));const posts=loadPosts(root);assert.equal(posts.length,2);assert.equal(posts.find(p=>p.slug==='chinese').content,'中文正文');assert.equal(posts.find(p=>p.slug==='english').content,'English body');assert.ok(posts.every(p=>!('english' in p)));}));
 
 test('optional site-copy falls back only when absent, preserving validation for existing overrides',()=>fixture(root=>{
  assert.deepEqual(loadSiteCopy(root),{revision:0,entries:{}});

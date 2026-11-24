@@ -15,7 +15,6 @@ export type Post = {
   published: boolean;
   featured: boolean;
   sample: boolean;
-  english?: { title: string; excerpt: string; content: string };
 };
 export type Settings = {
   author: string;
